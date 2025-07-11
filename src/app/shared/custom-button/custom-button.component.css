@@ -1,0 +1,25 @@
+.custom-animated-button {
+  animation: fadeInUp 0.5s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+}
+
+/* Efecto al hacer hover (efecto CSS) */
+.custom-animated-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Animación inicial (KeyFrame) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
