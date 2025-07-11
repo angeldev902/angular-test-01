@@ -1,0 +1,36 @@
+<div class="w-50 mx-auto pt-5">
+  <app-custom-title
+    text="Iniciar sesión"
+    [level]="3"
+    alignText="center"
+  ></app-custom-title>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+  
+    <app-custom-input
+      label="Email:"
+      type="email"
+      id="email"
+      [control]="emailControl"
+      placeholder="pedro@gmail.com"
+      errorMessage="Invalid email."
+    ></app-custom-input>
+  
+    <app-custom-input
+      label="Contraseña:"
+      type="password"
+      id="password"
+      [control]="passwordControl"
+      placeholder=""
+      errorMessage="Invalid password."
+    ></app-custom-input>
+    
+    <app-custom-button
+          className="btn btn-primary"
+          type="submit"
+          [disabled]="loginForm.invalid"
+          name="Iniciar sesión"
+    ></app-custom-button>
+
+  </form>
+</div>
