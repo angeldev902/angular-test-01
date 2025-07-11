@@ -15,8 +15,7 @@ import { CustomTitleComponent } from '../../../shared/custom-title/custom-title.
 export class CategoryListComponent {
   columns = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Name'  },
-    { key: 'code', label: 'Code'  }
+    { key: 'name', label: 'Name'  }
   ];
   public categories:Category[] = [];
 

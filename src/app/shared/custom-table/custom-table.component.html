@@ -1,39 +1,48 @@
-<table class="table table-bordered mt-3">
-  <thead class="table-dark">
-    <tr>
-      <th *ngFor="let col of columns">{{ col.label }}</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of data">
-      <td *ngFor="let col of columns">
-        <ng-container [ngSwitch]="col.type">
-          <span *ngSwitchCase="'currency'">{{ row[col.key] | currency:'USD':'symbol':'1.2-2' }}</span>
-          <span *ngSwitchCase="'date'">{{ row[col.key] | date:'shortDate' }}</span>
-          <span *ngSwitchCase="'object'">{{ row[col.key].name }}</span>
-          <span *ngSwitchDefault>{{ row[col.key] }}</span>
-        </ng-container>
-      </td>
-      <td class="d-flex justify-content-between">
-        <button class="btn btn-sm btn-danger" (click)="onDelete(row)">Eliminar</button>
-        <app-custom-link-button
-          className="btn btn-primary"
-          name="Update"
-          [routerLink]=" '/' + tableName + '/detail/' +row.id "
+<div class="table-responsive">
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th *ngFor="let col of columns">{{ col.label }}</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let col of columns">
+          <ng-container [ngSwitch]="col.type">
+            <span *ngSwitchCase="'currency'">
+              {{ row[col.key] | currency:'USD':'symbol':'1.2-2' }}
+            </span>
+            <span *ngSwitchCase="'date'">
+              {{ row[col.key] | date:'shortDate' }}
+            </span>
+            <span *ngSwitchCase="'object'">
+              {{ row[col.key]?.name }}
+            </span>
+            <span *ngSwitchDefault>
+              {{ row[col.key] }}
+            </span>
+          </ng-container>
+        </td>
+        <td class="d-flex flex-wrap gap-1 justify-content-between">
+          <button class="btn btn-sm btn-danger global-button" (click)="onDelete(row)">Eliminar</button>
+          <app-custom-link-button
+            className="btn btn-sm btn-primary global-button"
+            name="Update"
+            [routerLink]=" '/' + tableName + '/detail/' + row.id "
           ></app-custom-link-button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-  
-<div *ngIf="showPagination" class="d-flex justify-content-between align-items-center mt-2">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="showPagination" class="d-flex flex-wrap justify-content-between align-items-center mt-2">
   <button class="btn btn-sm btn-outline-primary" (click)="prevPage()" [disabled]="currentPage === 0">
     Anterior
   </button>
-  <span>Página {{ currentPage + 1 }}</span>
+  <span class="mt-2 mt-sm-0">Página {{ currentPage + 1 }}</span>
   <button class="btn btn-sm btn-outline-primary" (click)="nextPage()" [disabled]="(currentPage + 1) * pageSize >= totalItems">
     Siguiente
   </button>
 </div>
-  

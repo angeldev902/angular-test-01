@@ -7,3 +7,6 @@ body {
   color: #212529;
 }
 
+.global-button {
+  min-width: 80px;
+}
