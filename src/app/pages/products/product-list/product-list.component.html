@@ -1,1 +1,28 @@
-<p>product-list works!</p>
+<div class="w-75 m-auto mt-5">
+    <div class="row">
+        <div class="col">
+             <app-custom-title
+                text="Productos"
+                [level]="3"
+                alignText="start"
+            ></app-custom-title>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <app-custom-link-button
+            className="btn btn-primary"
+            name="Nuevo producto"
+            routerLink="/product/new"
+            ></app-custom-link-button>
+        </div>
+    </div>
+    <app-custom-table
+        tableName="products"
+        [columns]="columns"
+        [data]="products"
+        [showPagination]="true"
+        [pageSize]="limit"
+        [totalItems]="totalProducts"
+        (delete)="openDeleteDialog($event)"
+        (pageChange)="fetchPage($event)"
+    ></app-custom-table>
+</div>

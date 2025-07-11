@@ -1,1 +1,26 @@
-<p>brand-list works!</p>
+<div class="w-75 m-auto mt-5">
+    <div class="row">
+        <div class="col">
+            <!-- <h1 class="col">Brands</h1> -->
+             <app-custom-title
+                text="Marcas"
+                [level]="3"
+                alignText="start"
+            ></app-custom-title>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <app-custom-link-button
+            className="btn btn-primary"
+            name="Nueva marca"
+            routerLink="/brands/new"
+            ></app-custom-link-button>
+        </div>
+    </div>
+    <app-custom-table
+        [tableName]="'brands'"
+        [columns]="columns"
+        [data]="brands"
+        [showPagination]="false"
+        (delete)="openDeleteDialog($event)"
+    ></app-custom-table>
+</div>

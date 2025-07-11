@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomLinkButtonComponent } from '../custom-link-button/custom-link-button.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-custom-table',
-  imports: [CommonModule, CustomLinkButtonComponent],
+  imports: [CommonModule, RouterModule, CustomLinkButtonComponent],
   templateUrl: './custom-table.component.html',
   styleUrl: './custom-table.component.css',
   standalone: true
