@@ -5,12 +5,19 @@ import { Router } from '@angular/router';
 import { CustomButtonComponent } from '../../../shared/custom-button/custom-button.component';
 import { CustomInputComponent } from '../../../shared/custom-input/custom-input.component';
 import { CustomTitleComponent } from '../../../shared/custom-title/custom-title.component';
-
+import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-auth-login',
-  imports: [CommonModule, ReactiveFormsModule, CustomButtonComponent, CustomInputComponent, CustomTitleComponent],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    CustomButtonComponent, 
+    CustomInputComponent, 
+    CustomTitleComponent
+  ],
   templateUrl: './auth-login.component.html',
-  styleUrl: './auth-login.component.css'
+  styleUrl: './auth-login.component.css',
+  standalone: true
 })
 export class AuthLoginComponent {
   loginForm: FormGroup;
@@ -19,7 +26,8 @@ export class AuthLoginComponent {
 
   constructor(
     private fb: FormBuilder, 
-    private router:Router
+    private router:Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -32,7 +40,9 @@ export class AuthLoginComponent {
 
   submit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe(res => {
+        this.router.navigate(['/dashboard']);
+      })
     }
   }
 }
